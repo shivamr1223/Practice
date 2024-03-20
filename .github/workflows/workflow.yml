@@ -16,6 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install MinIO Client (mc)
+        run: |
+          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          sudo mv mc /usr/local/bin
+
       - name: Upload config file to MinIO
         run: |
           mc alias set myminio http://192.168.218.186:9000 minioadmin minioadmin
